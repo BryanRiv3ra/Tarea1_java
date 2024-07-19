@@ -45,24 +45,38 @@ public class Main {
             System.out.println(num1+" * "+i+" = "+resultado);
         }
     }
-    public static void MayorMenor(){
+    public static void CadenaNum(){
         Scanner sc = new Scanner(System.in);
-        int num,numMa,numMe;
-        numMa=0;
-        numMe=Integer.MAX_VALUE;
+        int num, numMa, numMe;
+        numMa = Integer.MIN_VALUE;
+        numMe = Integer.MAX_VALUE;
+        boolean numeropositivo = true;
+
         do {
-            System.out.println("ingrese un numero entero positivo");
+            System.out.println("Ingrese un numero entero positivo (o negativo para terminar):");
             num = sc.nextInt();
-            if (num>0){
-                if (num > numMa) {
-                    numMa=num;
-                } else if (num<numMe) {
-                    numMe=num;
+            if (num > 0) {
+                if (numeropositivo) {
+                    numMa = num;
+                    numMe = num;
+                    numeropositivo = false;
+                } else {
+                    if (num > numMa) {
+                        numMa = num;
+                    }
+                    if (num < numMe) {
+                        numMe = num;
+                    }
                 }
             }
-        }   while (num >= 0);
-        System.out.println("El numero Mayor es: "+numMa);
-        System.out.println("El numero Menor es: "+numMe);
+        } while (num >= 0);
+
+        if (numeropositivo) {
+            System.out.println("No se ingresaron numeros positivos.");
+        } else {
+            System.out.println("El numero Mayor es: " + numMa);
+            System.out.println("El numero Menor es: " + numMe);
+        }
 
 
     }
@@ -99,7 +113,7 @@ public class Main {
                     Tabla();
                     break;
                 case 6:
-                    MayorMenor();
+                    CadenaNum();
                     break;
                 case 7:
                     System.out.println("Saliendo del programa...");
